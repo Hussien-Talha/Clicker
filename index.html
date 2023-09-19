@@ -1,0 +1,108 @@
+<html>
+<head>
+  <style>
+    body {
+      background-color: white;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 24px;
+      }
+      .round-button {
+        border: 2px solid #000; /* Set the border width and color */
+        border-radius: 50%; /* Make the button round */
+        margin-top: 15px; /* Adjust 10px as per your desired space */
+        padding: 10px 20px; /* Add padding to increase button size */
+        background-color: transparent; /* Set background color to transparent */
+        color: #000; /* Set text color */
+        font-size: 16px; /* Set font size */
+      }
+      
+      .round-button:hover {
+        background-color: #000; /* Change background color on hover */
+        color: #fff; /* Change text color on hover */
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div id="HighScore"></div>
+        <h1 id="counter">0</h1>
+        <div id="container">Clicks</div>
+        <button class="round-button" id="Save">Save Score</button>
+        <button class="round-button" id="reset">Reset</button>
+  <script>
+    // Initialize the clicks variable to zero
+    var clicks = 0;
+
+    // Get the HTML elements that show the counter and the high score
+    var counterElement = document.getElementById("counter");
+    var highScoreElement = document.getElementById("HighScore");
+
+    // Define a function that resets the clicks to zero and updates the counter element
+    function resetClicks() {
+      clicks = 0;
+      counterElement.innerHTML = clicks;
+    }
+
+    // Get the button elements with id="Save" and id="reset"
+    var saveButton = document.getElementById("Save");
+    var resetButton = document.getElementById("reset");
+
+    // Add an event listener to the save button that saves the high score and redirects to another page
+    saveButton.addEventListener("click", function() {
+        localStorage.setItem('HighScore', "High Score= " + clicks);
+      });
+
+    // Add an event listener to the reset button that calls the resetClicks function when it is clicked
+    resetButton.addEventListener("click", resetClicks);
+
+    // Add an event listener to the body element that increments the clicks and updates the counter element when it is clicked
+    document.body.addEventListener("click", function() {
+      clicks++;
+      counterElement.innerHTML = clicks;
+    });
+
+    // Get the saved high score from localStorage and update the high score element
+    var highScore = localStorage.getItem('HighScore');
+    if (highScore) {
+      highScoreElement.innerHTML = highScore;
+    }
+    // Get the HTML element that shows the high score
+var highScoreElement = document.getElementById("HighScore");
+
+// Initialize a variable to store the previous high score value
+var prevHighScore = localStorage.getItem('HighScore');
+
+// Define a function that checks if the HighScore item has changed and updates the high score element
+function checkHighScore() {
+  // Get the current high score value from localStorage
+  var currHighScore = localStorage.getItem('HighScore');
+
+  // Compare the current and previous values
+  if (currHighScore !== prevHighScore) {
+    // Update the high score element with the current value
+    highScoreElement.innerHTML = currHighScore;
+
+    // Update the previous value with the current value
+    prevHighScore = currHighScore;
+  }
+}
+
+// Set an interval to run the checkHighScore function every 1 second (1000 milliseconds)
+setInterval(checkHighScore, 1);
+  </script>
+</body>
+<footer>Created by Hussien Talha ©</footer>
+</html>
+
