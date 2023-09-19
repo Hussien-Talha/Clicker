@@ -78,30 +78,29 @@
     if (highScore) {
       highScoreElement.innerHTML = highScore;
     }
-    // Get the HTML element that shows the high score
-var highScoreElement = document.getElementById("HighScore");
 
-// Initialize a variable to store the previous high score value
-var prevHighScore = localStorage.getItem('HighScore');
+    // Initialize a variable to store the previous high score value
+    var prevHighScore = localStorage.getItem('HighScore');
 
-// Define a function that checks if the HighScore item has changed and updates the high score element
-function checkHighScore() {
-  // Get the current high score value from localStorage
-  var currHighScore = localStorage.getItem('HighScore');
+    // Define a function that checks if the HighScore item has changed and updates the high score element
+    function checkHighScore() {
+      // Get the current high score value from localStorage
+      var currHighScore = localStorage.getItem('HighScore');
 
-  // Compare the current and previous values
-  if (currHighScore !== prevHighScore) {
-    // Update the high score element with the current value
-    highScoreElement.innerHTML = currHighScore;
+      // Compare the current and previous values
+      if (currHighScore !== prevHighScore) {
+        // Update the high score element with the current value
+        highScoreElement.innerHTML = currHighScore;
 
-    // Update the previous value with the current value
-    prevHighScore = currHighScore;
-  }
-}
+        // Update the previous value with the current value
+        prevHighScore = currHighScore;
+      }
+    }
 
-// Set an interval to run the checkHighScore function every 1 second (1000 milliseconds)
-setInterval(checkHighScore, 1);
-  </script>
+    // Set an interval to run the checkHighScore function every 1 millisecond
+    setInterval(checkHighScore, 1);
+</script>
+
 </body>
 <footer>Created by Hussien Talha ©</footer>
 </html>
